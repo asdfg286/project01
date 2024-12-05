@@ -177,54 +177,6 @@ src/Contours.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.s
 .PHONY : src/Contours.cc.s
 
-src/base.o: src/base.cc.o
-.PHONY : src/base.o
-
-# target to build an object file
-src/base.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/base.cc.o
-.PHONY : src/base.cc.o
-
-src/base.i: src/base.cc.i
-.PHONY : src/base.i
-
-# target to preprocess a source file
-src/base.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/base.cc.i
-.PHONY : src/base.cc.i
-
-src/base.s: src/base.cc.s
-.PHONY : src/base.s
-
-# target to generate assembly for a file
-src/base.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/base.cc.s
-.PHONY : src/base.cc.s
-
-src/line.o: src/line.cc.o
-.PHONY : src/line.o
-
-# target to build an object file
-src/line.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/line.cc.o
-.PHONY : src/line.cc.o
-
-src/line.i: src/line.cc.i
-.PHONY : src/line.i
-
-# target to preprocess a source file
-src/line.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/line.cc.i
-.PHONY : src/line.cc.i
-
-src/line.s: src/line.cc.s
-.PHONY : src/line.s
-
-# target to generate assembly for a file
-src/line.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/line.cc.s
-.PHONY : src/line.cc.s
-
 src/point.o: src/point.cc.o
 .PHONY : src/point.o
 
@@ -288,12 +240,6 @@ help:
 	@echo "... src/Contours.o"
 	@echo "... src/Contours.i"
 	@echo "... src/Contours.s"
-	@echo "... src/base.o"
-	@echo "... src/base.i"
-	@echo "... src/base.s"
-	@echo "... src/line.o"
-	@echo "... src/line.i"
-	@echo "... src/line.s"
 	@echo "... src/point.o"
 	@echo "... src/point.i"
 	@echo "... src/point.s"

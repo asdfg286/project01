@@ -15,7 +15,7 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
     cv::inRange(hsv, cv::Scalar(156, 43, 46), cv::Scalar(180, 255, 255), mask2);
     mask=mask1|mask2;
   
-    //cv::imshow("mask", mask);
+    cv::imshow("mask", mask);
 
 
     
@@ -28,7 +28,7 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
 
     cv::GaussianBlur(mask,mask,cv::Size(3,3),0);
     cv::Canny(mask,point,50,150);
-    imshow("result", mask);
+imshow("result", mask);
 
 
     std::vector<std::vector<cv::Point>> contours;

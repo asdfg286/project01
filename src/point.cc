@@ -1,7 +1,6 @@
 #include"point.h"
 
 
-
 // 计算点相对于第一个点的角度
 float angleBetweenPoints(cv::Point p1, cv::Point p2, cv::Point firstPoint) {
     float dx1 = p1.x - firstPoint.x;
@@ -27,10 +26,10 @@ std::vector<cv::Point> sortPointsClockwise(std::vector<cv::Point>& points) {
         center.y+=points[i].y/4;
     }
 
-    cv::Point firstPoint = center;
+    cv::Point basePoint = center;
     std::vector<cv::Point> sortedPoints = points;
-    std::sort(sortedPoints.begin(), sortedPoints.end(), [firstPoint](const cv::Point& p1, const cv::Point& p2) {
-        return angleBetweenPoints(p1, firstPoint, firstPoint) < angleBetweenPoints(p2, firstPoint, firstPoint);
+    std::sort(sortedPoints.begin(), sortedPoints.end(), [basePoint](const cv::Point& p1, const cv::Point& p2) {
+        return angleBetweenPoints(p1, basePoint, basePoint) < angleBetweenPoints(p2, basePoint, basePoint);
     });
     
     for(int i=0;i<sortedPoints.size();i++){
@@ -82,6 +81,27 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
     }
 
 
+    bool have[contours.size()]={0};
+    for(int i=0;i<contours.size();i++){
+        for(int j=0;j<contours[i].size();j++){
+            for(int k=0;k<result0.size();k++){
+                if(contours[i][j]==result0[k]){
+                    have[i]=true;
+                    break;
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<contours.size();i++){
+        if(have[i]){
+            for(int j=0;j<contours[i].size();j++){
+                result0.push_back(contours[i][j]);
+            }
+        }
+    }
+
+
     //result0没有的点放在result
     for(int i=0;i<points.size();i++){
         bool flag=false;
@@ -96,7 +116,7 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
         }
     }
     
-    if(result.size()==4){return result;}
+    
     
     cv::Point temp(0,10000);
     std::vector<std::vector<cv::Point>> contourss;
@@ -110,12 +130,22 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
         }
     }
     }
+    for(int i=0;i<contourss.size();i++){
+        for(int j=i+1;j<contourss.size();j++){
+            if(contourss[i]==contourss[j]){
+                contourss.erase(contourss.begin()+j);
+                j--;i--;
+            }
+        }
+    }
     std::vector<double> area;
     //提取面积最大得轮廓
     for(int i=0;i<contourss.size();i++){
        area.push_back(cv::contourArea(contourss[i])); 
     }
     sort(area.begin(),area.end(),[](double a, double b){return a>b;});
+    if(area.size()>2){if(area[1]>50){std::swap(area[0],area[1]);}}
+    if(area.size()>2)std::cout<<area[0]<<"  "<<area[1]<<std::endl;
     std::vector<double> dist;
     for(int i=0;i<contourss.size();i++){
         
@@ -138,6 +168,69 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
     }
 }
     result.push_back(temp);
+    //================================================================================bug
+    int near=-1;
+    double temparea=0;
+    double neararea=0;
+
+    std::vector<double> euclideanDistance0;
+
+    if(result.size()==5){
+        for(int i=0;i<result.size()-1;i++){
+            //std::cout<<euclideanDistance(result[i],temp)<<"==========222222222222222222222222"<<std::endl;
+            if(euclideanDistance(result[i],temp)>10)euclideanDistance0.push_back(euclideanDistance(result[i],temp)); 
+        }
+
+        sort(euclideanDistance0.begin(),euclideanDistance0.end(),[](double a, double b){return a<b;});
+        for(int i=0;i<result.size()-1;i++){
+            
+            if(euclideanDistance(result[i],temp)==euclideanDistance0[0]){
+                near=i;
+            }
+        }
+        
+    
+        for(int i=0;i<contourss.size();i++){
+            for(int j=0;j<contourss[i].size();j++){
+                if(contourss[i][j]==temp){
+                    temparea=cv::contourArea(contourss[i]);
+                    break;
+
+                }
+            }
+            if(temparea!=0)break;
+        }
+
+        if(near!=-1){
+            std::cout<<"near"<<near<<std::endl;
+    
+        for(int i=0;i<contours.size();i++){
+            for(int j=0;j<contours[i].size();j++){
+                if(contours[i][j]==result[near]){
+                    neararea=cv::contourArea(contours[i]);
+                    break;
+                
+                }
+            }
+            if(neararea!=0)break;  
+        }
+        std::cout<<"----------------------"<<std::endl;
+        std::cout<<"neararea"<<neararea<<std::endl;
+        std::cout<<"temparea"<<temparea<<std::endl;
+        if(temparea<neararea){
+        
+            swap(result[near],result[4]);
+            result.erase(result.begin()+near);
+            std::cout<<"777777777777777"<<std::endl;
+        
+        }
+        else{
+            result.erase(result.begin()+near);
+            std::cout<<"6666666666666666666666666666666666666666"<<std::endl;
+        }
+    
+        }
+    }
     return result;
 }
 
@@ -185,11 +278,12 @@ std::vector<std::vector<cv::Point>> distinguish(std::vector<std::vector<cv::Poin
     return point;
 }
 
-
+//顶点
 std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
-    //顶点
+    
     
     std::vector<cv::Point> vertex;
+    if(contour.size()==2){vertex.push_back(contour[0]);vertex.push_back(contour[1]);}
     
     if(contour.size()==3){
         
@@ -227,7 +321,7 @@ bool isRedPixel(cv::Point point, cv::Mat image) {
 
     // 定义红色的阈值
     const cv::Scalar redLower(0,0, 10);
-    const cv::Scalar redUpper(250,250, 255);
+    const cv::Scalar redUpper(255,255, 255);
 
     
 
@@ -266,7 +360,18 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
 
 
     pointss=distinguish(contours,img0);
-    pointfor=processNearPoints(pointss[1], 30,contours);
+    //===========================
+
+    cv::Mat test=point.clone();
+    for(int i=0;i<pointss.size();i++){
+        for(int j=0;j<pointss[i].size();j++){
+            cv::drawMarker(test,pointss[i][j],cv::Scalar(255,255,0),cv::MARKER_CROSS, 5, 2);
+        }
+    
+    }
+    imshow("result3", test);
+    //===========================
+    pointfor=processNearPoints(pointss[1], 10,contours);
     
     pointthr=pointss[0];
     
@@ -277,7 +382,7 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
     for(int i=0;i<pointfor.size()-1;i++){
         cv::drawMarker(point,pointfor[i],cv::Scalar(0,255,255),cv::MARKER_CROSS, 5, 2);
     }
-    cv::drawMarker(point,pointfor[pointfor.size()-1],cv::Scalar(255,255,255),cv::MARKER_CROSS, 5, 2);
+    cv::drawMarker(point,pointfor[pointfor.size()-1],cv::Scalar(255,0,255),cv::MARKER_CROSS, 5, 2);
     imshow("result4", point);
 
     std::vector<std::vector<cv::Point>> result=pointss;

@@ -10,8 +10,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/d/0_wsl_workspace/project1/main.cc" "CMakeFiles/tjurm_tutorial.dir/main.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/main.cc.o.d"
   "/mnt/d/0_wsl_workspace/project1/src/Contours.cc" "CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o.d"
-  "/mnt/d/0_wsl_workspace/project1/src/base.cc" "CMakeFiles/tjurm_tutorial.dir/src/base.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/src/base.cc.o.d"
-  "/mnt/d/0_wsl_workspace/project1/src/line.cc" "CMakeFiles/tjurm_tutorial.dir/src/line.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/src/line.cc.o.d"
   "/mnt/d/0_wsl_workspace/project1/src/point.cc" "CMakeFiles/tjurm_tutorial.dir/src/point.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/src/point.cc.o.d"
   "/mnt/d/0_wsl_workspace/project1/src/test.cc" "CMakeFiles/tjurm_tutorial.dir/src/test.cc.o" "gcc" "CMakeFiles/tjurm_tutorial.dir/src/test.cc.o.d"
   )
