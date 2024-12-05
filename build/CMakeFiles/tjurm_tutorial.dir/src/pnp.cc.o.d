@@ -1,6 +1,6 @@
-CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: \
- /mnt/d/0_wsl_workspace/project1/src/test.cc /usr/include/stdc-predef.h \
- /mnt/d/0_wsl_workspace/project1/include/test.h \
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o: \
+ /mnt/d/0_wsl_workspace/project1/src/pnp.cc /usr/include/stdc-predef.h \
+ /mnt/d/0_wsl_workspace/project1/include/pnp.h \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/opencv.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/opencv_modules.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/core.hpp \
@@ -360,7 +360,4 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video/tracking.hpp \
- /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp \
- /mnt/d/0_wsl_workspace/project1/include/Contours.h \
- /mnt/d/0_wsl_workspace/project1/include/point.h \
- /mnt/d/0_wsl_workspace/project1/include/pnp.h
+ /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp

@@ -177,6 +177,30 @@ src/Contours.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.s
 .PHONY : src/Contours.cc.s
 
+src/pnp.o: src/pnp.cc.o
+.PHONY : src/pnp.o
+
+# target to build an object file
+src/pnp.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o
+.PHONY : src/pnp.cc.o
+
+src/pnp.i: src/pnp.cc.i
+.PHONY : src/pnp.i
+
+# target to preprocess a source file
+src/pnp.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.i
+.PHONY : src/pnp.cc.i
+
+src/pnp.s: src/pnp.cc.s
+.PHONY : src/pnp.s
+
+# target to generate assembly for a file
+src/pnp.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tjurm_tutorial.dir/build.make CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.s
+.PHONY : src/pnp.cc.s
+
 src/point.o: src/point.cc.o
 .PHONY : src/point.o
 
@@ -240,6 +264,9 @@ help:
 	@echo "... src/Contours.o"
 	@echo "... src/Contours.i"
 	@echo "... src/Contours.s"
+	@echo "... src/pnp.o"
+	@echo "... src/pnp.i"
+	@echo "... src/pnp.s"
 	@echo "... src/point.o"
 	@echo "... src/point.i"
 	@echo "... src/point.s"

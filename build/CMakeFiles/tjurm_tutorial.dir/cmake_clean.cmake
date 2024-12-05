@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/tjurm_tutorial.dir/main.cc.o.d"
   "CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o"
   "CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o.d"
+  "CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o"
+  "CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o.d"
   "CMakeFiles/tjurm_tutorial.dir/src/point.cc.o"
   "CMakeFiles/tjurm_tutorial.dir/src/point.cc.o.d"
   "CMakeFiles/tjurm_tutorial.dir/src/test.cc.o"

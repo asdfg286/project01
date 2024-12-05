@@ -97,10 +97,24 @@ CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/0_wsl_workspace/project1/src/Contours.cc -o CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.s
 
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o: CMakeFiles/tjurm_tutorial.dir/flags.make
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o: ../src/pnp.cc
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o: CMakeFiles/tjurm_tutorial.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o -MF CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o.d -o CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o -c /mnt/d/0_wsl_workspace/project1/src/pnp.cc
+
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/0_wsl_workspace/project1/src/pnp.cc > CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.i
+
+CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/0_wsl_workspace/project1/src/pnp.cc -o CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.s
+
 CMakeFiles/tjurm_tutorial.dir/src/point.cc.o: CMakeFiles/tjurm_tutorial.dir/flags.make
 CMakeFiles/tjurm_tutorial.dir/src/point.cc.o: ../src/point.cc
 CMakeFiles/tjurm_tutorial.dir/src/point.cc.o: CMakeFiles/tjurm_tutorial.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tjurm_tutorial.dir/src/point.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tjurm_tutorial.dir/src/point.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tjurm_tutorial.dir/src/point.cc.o -MF CMakeFiles/tjurm_tutorial.dir/src/point.cc.o.d -o CMakeFiles/tjurm_tutorial.dir/src/point.cc.o -c /mnt/d/0_wsl_workspace/project1/src/point.cc
 
 CMakeFiles/tjurm_tutorial.dir/src/point.cc.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/tjurm_tutorial.dir/src/point.cc.s: cmake_force
 CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: CMakeFiles/tjurm_tutorial.dir/flags.make
 CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc
 CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: CMakeFiles/tjurm_tutorial.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tjurm_tutorial.dir/src/test.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/tjurm_tutorial.dir/src/test.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tjurm_tutorial.dir/src/test.cc.o -MF CMakeFiles/tjurm_tutorial.dir/src/test.cc.o.d -o CMakeFiles/tjurm_tutorial.dir/src/test.cc.o -c /mnt/d/0_wsl_workspace/project1/src/test.cc
 
 CMakeFiles/tjurm_tutorial.dir/src/test.cc.i: cmake_force
@@ -129,6 +143,7 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.s: cmake_force
 tjurm_tutorial_OBJECTS = \
 "CMakeFiles/tjurm_tutorial.dir/main.cc.o" \
 "CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o" \
+"CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o" \
 "CMakeFiles/tjurm_tutorial.dir/src/point.cc.o" \
 "CMakeFiles/tjurm_tutorial.dir/src/test.cc.o"
 
@@ -137,6 +152,7 @@ tjurm_tutorial_EXTERNAL_OBJECTS =
 
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/main.cc.o
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o
+tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/src/point.cc.o
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/src/test.cc.o
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/build.make
@@ -156,7 +172,7 @@ tjurm_tutorial: /usr/local/opencv4.5.4/lib/libopencv_flann.so.4.5.4
 tjurm_tutorial: /usr/local/opencv4.5.4/lib/libopencv_imgproc.so.4.5.4
 tjurm_tutorial: /usr/local/opencv4.5.4/lib/libopencv_core.so.4.5.4
 tjurm_tutorial: CMakeFiles/tjurm_tutorial.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tjurm_tutorial"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/0_wsl_workspace/project1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable tjurm_tutorial"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tjurm_tutorial.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

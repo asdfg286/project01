@@ -370,8 +370,8 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
     
     }
     imshow("result3", test);
-    //===========================
-    pointfor=processNearPoints(pointss[1], 10,contours);
+
+    pointfor=processNearPoints(pointss[1], 20,contours);
     
     pointthr=pointss[0];
     

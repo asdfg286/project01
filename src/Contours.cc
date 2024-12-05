@@ -25,7 +25,6 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
    
     //½üËÆ
     
-
     cv::GaussianBlur(mask,mask,cv::Size(3,3),0);
     cv::Canny(mask,point,50,150);
 imshow("result", mask);
