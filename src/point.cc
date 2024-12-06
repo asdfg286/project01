@@ -72,7 +72,6 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
     std::vector<cv::Point> result0;
     for(int i=0;i<points.size();i++){
         for(int j=i+1;j<points.size();j++){
-            // std::cout<<euclideanDistance(points[i],points[j])<<std::endl;
             if(euclideanDistance(points[i],points[j])<threshold){
                 result0.push_back(points[i]);
                 result0.push_back(points[j]); 
@@ -168,7 +167,6 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
     }
 }
     result.push_back(temp);
-    //================================================================================bug
     int near=-1;
     double temparea=0;
     double neararea=0;
@@ -177,7 +175,6 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
 
     if(result.size()==5){
         for(int i=0;i<result.size()-1;i++){
-            //std::cout<<euclideanDistance(result[i],temp)<<"==========222222222222222222222222"<<std::endl;
             if(euclideanDistance(result[i],temp)>10)euclideanDistance0.push_back(euclideanDistance(result[i],temp)); 
         }
 
@@ -248,7 +245,6 @@ std::vector<std::vector<cv::Point>> distinguish(std::vector<std::vector<cv::Poin
     if(length[0]>length[1]*1.5){
        for(int i=0;i<contours.size();i++){
         if(cv::arcLength(cv::Mat(contours[i]), true)==length[0]){
-            // point.insert(point.end(), contours[i].begin(), contours[i].end());
             for(int j=0;j<contours[i].size();j++){
                 point[0].push_back(contours[i][j]);
             
@@ -256,7 +252,6 @@ std::vector<std::vector<cv::Point>> distinguish(std::vector<std::vector<cv::Poin
         }
         else{
             // 将 vertex 函数返回的点插入到 point 向量中
-            //point.insert(point.end(), vertex(contours[i], img0).begin(), vertex(contours[i], img0).end());
             for(int j=0;j<vertex(contours[i], img0).size();j++){
                 point[1].push_back(vertex(contours[i], img0)[j]);
             }
@@ -264,11 +259,9 @@ std::vector<std::vector<cv::Point>> distinguish(std::vector<std::vector<cv::Poin
         }
        
     }
-    ///=======================
     else{
         for(int i=0;i<contours.size();i++){
             // 将 vertex 函数返回的点插入到 point 向量中
-            //point.insert(point.end(), vertex(contours[i], img0).begin(), vertex(contours[i], img0).end());
             for(int j=0;j<vertex(contours[i], img0).size();j++){
                 point[1].push_back(vertex(contours[i], img0)[j]);
             }
@@ -293,7 +286,6 @@ std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
             cv::Point temp2=(contour[j]+contour[(j+2)%3])/2;
             int a=isRedPixel(temp1,img0);
             int b=isRedPixel(temp2,img0);
-            //std::cout<<a<<" "<<b<<std::endl;
             if((a+b)==2){
                 vertex.push_back(contour[j]);
                 
@@ -356,37 +348,13 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
 
     cv::Mat point= cv::Mat::zeros(img.size(), CV_8UC3);
     cv::drawContours(point, contours, -1, cv::Scalar(255, 0, 0), 1);
-    cv::imshow("result1", point);
-
-    for(int i=0;i<contours.size();i++){
-        for(int j=0;j<contours[i].size();j++){
-            
-                cv::drawMarker(point,contours[i][j],cv::Scalar(255,0,0),cv::MARKER_CROSS, 5, 2);
-            
-        }
-    }
-    imshow("result2", point);
-    
-
     std::vector<std::vector<cv::Point>> pointss;
     std::vector<cv::Point> pointthr;
     std::vector<cv::Point> pointfor;
 
 
     pointss=distinguish(contours,img0);
-    //===========================
-
-    cv::Mat test=point.clone();
-    for(int i=0;i<pointss.size();i++){
-        for(int j=0;j<pointss[i].size();j++){
-            cv::drawMarker(test,pointss[i][j],cv::Scalar(255,255,0),cv::MARKER_CROSS, 5, 2);
-        }
-    
-    }
-    imshow("result3", test);
-
     pointfor=processNearPoints(pointss[1], 20,contours);
-    
     pointthr=pointss[0];
     
     
