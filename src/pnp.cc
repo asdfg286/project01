@@ -27,21 +27,21 @@ bool pnp(std::vector<cv::Point2f> &imagePoints,cv::Mat &rvec,cv::Mat &tvec){
     // 使用solvePnP函数求解相机位姿
     bool success = cv::solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec);
 
-    if(success) {
-        std::cout << "PnP solved successfully!" << std::endl;
+    // if(success) {
+    //     std::cout << "PnP solved successfully!" << std::endl;
 
-        // 将旋转向量转换为旋转矩阵
-        cv::Mat R;
-        cv::Rodrigues(rvec, R);
+    //     // 将旋转向量转换为旋转矩阵
+    //     cv::Mat R;
+    //     cv::Rodrigues(rvec, R);
 
-        // 输出结果
-        std::cout << "Rotation vector: " << rvec << std::endl;
-        std::cout << "Translation vector: " << tvec << std::endl;
-        std::cout << "Rotation matrix: " << R << std::endl;
+    //     // 输出结果
+    //     std::cout << "Rotation vector: " << rvec << std::endl;
+    //     std::cout << "Translation vector: " << tvec << std::endl;
+    //     std::cout << "Rotation matrix: " << R << std::endl;
         
-    } else {
-        std::cout << "PnP solve failed." << std::endl;
+    // } else {
+    //     std::cout << "PnP solve failed." << std::endl;
         
-    }
-return success;
+    // }
+return 0;
 }

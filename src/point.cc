@@ -299,6 +299,20 @@ std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
                 
             }
         }
+        if(contourArea(contour)>100&&vertex.size()==3){
+            vertex.clear();
+            float arctan[3];
+            arctan[0]=abs(angleBetweenPoints(contour[0],contour[1],contour[2]));
+            arctan[1]=abs(angleBetweenPoints(contour[1],contour[2],contour[0]));
+            arctan[2]=abs(angleBetweenPoints(contour[2],contour[0],contour[1]));
+            std::sort(arctan,arctan+3,[](float a, float b){return a>b;});
+            for(int i=0;i<3;i++){
+                if(abs(angleBetweenPoints(contour[(i+2)%3],contour[(i+1)%3],contour[i]))==arctan[0]){
+                    vertex.push_back(contour[i]);
+            }
+
+        }
+    }
     }
     return vertex;  
 }
