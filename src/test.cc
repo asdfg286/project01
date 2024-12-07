@@ -5,7 +5,7 @@
 
 
 
-void test01(cv::Mat &img){
+cv::Mat test01(cv::Mat &img){
 std::vector<std::vector<cv::Point>> contours=getContours(img);
 cv::Mat mask=cv::Mat::zeros(img.size(), CV_8UC1);
 cv::drawContours(mask,contours,-1,cv::Scalar(255,255,255),2);
@@ -30,6 +30,7 @@ for(int i=0;i<points[1].size();i++){
 cv::putText(point, std::to_string(4-i), points[1][i], cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 2);
 }
 cv::imshow("poin    t",point);
+
 
 // 2D点的坐标（在图像坐标系中）
     std::vector<cv::Point2f> imagePoints;
@@ -57,4 +58,5 @@ cv::imshow("poin    t",point);
         
     }
     }
+    return point;
 }

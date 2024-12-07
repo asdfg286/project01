@@ -57,18 +57,3 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
    
     return contours;
 }
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-        
-        

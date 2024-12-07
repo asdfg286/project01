@@ -421,13 +421,7 @@ CMakeFiles/tjurm_tutorial.dir/main.cc.o: ../main.cc \
   /usr/local/opencv4.5.4/include/opencv4/opencv2/stitching/detail/camera.hpp \
   /usr/local/opencv4.5.4/include/opencv4/opencv2/video.hpp \
   /usr/local/opencv4.5.4/include/opencv4/opencv2/video/tracking.hpp \
-  /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp \
-  /usr/include/c++/11/filesystem \
-  /usr/include/c++/11/bits/fs_fwd.h \
-  /usr/include/c++/11/bits/fs_path.h \
-  /usr/include/c++/11/codecvt \
-  /usr/include/c++/11/bits/fs_dir.h \
-  /usr/include/c++/11/bits/fs_ops.h
+  /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp
 
 CMakeFiles/tjurm_tutorial.dir/src/Contours.cc.o: ../src/Contours.cc \
   /usr/include/stdc-predef.h \
@@ -2127,8 +2121,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 
 ../src/Contours.cc:
 
-/usr/include/c++/11/bits/fs_ops.h:
-
 /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp:
 
 /usr/local/opencv4.5.4/include/opencv4/opencv2/video/tracking.hpp:
@@ -2215,8 +2207,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 
 /usr/local/opencv4.5.4/include/opencv4/opencv2/flann/result_set.h:
 
-/usr/include/c++/11/filesystem:
-
 /usr/local/opencv4.5.4/include/opencv4/opencv2/flann/nn_index.h:
 
 /usr/local/opencv4.5.4/include/opencv4/opencv2/flann/saving.h:
@@ -2298,8 +2288,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 /usr/local/opencv4.5.4/include/opencv4/opencv2/core/persistence.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h:
-
-/usr/include/c++/11/bits/fs_dir.h:
 
 /usr/local/opencv4.5.4/include/opencv4/opencv2/core/saturate.hpp:
 
@@ -2545,8 +2533,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 
 /usr/include/c++/11/limits:
 
-/usr/include/c++/11/bits/fs_path.h:
-
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
@@ -2781,8 +2767,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 
 /usr/include/c++/11/cstring:
 
-/usr/include/c++/11/codecvt:
-
 /usr/local/opencv4.5.4/include/opencv4/opencv2/flann/lsh_index.h:
 
 /usr/local/opencv4.5.4/include/opencv4/opencv2/dnn/layer.hpp:
@@ -2854,8 +2838,6 @@ CMakeFiles/tjurm_tutorial.dir/src/test.cc.o: ../src/test.cc \
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/c++/11/bits/fs_fwd.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 

@@ -144,7 +144,6 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
     }
     sort(area.begin(),area.end(),[](double a, double b){return a>b;});
     if(area.size()>2){if(area[1]>50){std::swap(area[0],area[1]);}}
-    if(area.size()>2)std::cout<<area[0]<<"  "<<area[1]<<std::endl;
     std::vector<double> dist;
     for(int i=0;i<contourss.size();i++){
         
@@ -211,19 +210,15 @@ std::vector<cv::Point> processNearPoints(const std::vector<cv::Point>& points, d
             }
             if(neararea!=0)break;  
         }
-        std::cout<<"----------------------"<<std::endl;
-        std::cout<<"neararea"<<neararea<<std::endl;
-        std::cout<<"temparea"<<temparea<<std::endl;
         if(temparea<neararea){
         
             swap(result[near],result[4]);
             result.erase(result.begin()+near);
-            std::cout<<"777777777777777"<<std::endl;
+            
         
         }
         else{
             result.erase(result.begin()+near);
-            std::cout<<"6666666666666666666666666666666666666666"<<std::endl;
         }
     
         }
@@ -329,8 +324,6 @@ bool isRedPixel(cv::Point point, cv::Mat image) {
     const cv::Scalar redLower(0,0, 10);
     const cv::Scalar redUpper(255,255, 255);
 
-    
-
     // 获取该点的像素值
     cv::Vec3b color = image.at<cv::Vec3b>(y, x);
 
@@ -391,8 +384,3 @@ else{std::cout<<"error"<<std::endl;}
     return result;
 
 }
-
-
-
-
-

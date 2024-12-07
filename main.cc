@@ -1,6 +1,6 @@
 # include"test.h"
 // int main(){
-// cv::Mat img=cv::imread("../img/a/q.jpg");
+// cv::Mat img=cv::imread("/mnt/c/Users/wangzixiao1/Pictures/Screenshots/a.png");
 //     if(img.empty()){
 //         std::cout<<"111";
 //         return -1;
@@ -21,7 +21,15 @@ namespace fs = std::filesystem; // 使用std::filesystem命名空间的别名，简化代码
 
 int main() {
     std::string path = "../img/station"; // 指定要遍历的文件夹路径
+    std::string outputPath = "../img/output";    
     fs::path dir(path);                      // 将字符串路径转换为fs::path对象
+    fs::path outputDir(outputPath);
+
+
+    // 创建输出文件夹（如果不存在）
+    if (!fs::exists(outputDir)) {
+        fs::create_directory(outputDir);
+    }
 
     int count = 0; // 用于计数处理的图片数量
 
@@ -38,7 +46,11 @@ int main() {
             // 检查图片是否成功加载（非空）
             if (!image.empty()) {
                 // 显示图片，窗口名称为"Image"
-                test01(image);
+                cv::Mat result=test01(image);
+
+                std::string outputFileName = entry.path().filename().string();
+                fs::path outputPath = outputDir / outputFileName;
+                cv::imwrite(outputPath.string(), result);
                 // 等待按键，参数0表示无限等待直到按键
                 int num=cv::waitKey(0);
                 //esct 退出

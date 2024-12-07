@@ -1,2 +1,2 @@
 #include<opencv2/opencv.hpp>
-void test01(cv::Mat &img);
+cv::Mat test01(cv::Mat &img);
