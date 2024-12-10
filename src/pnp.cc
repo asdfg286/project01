@@ -1,6 +1,6 @@
 #include"pnp.h"
 #include"point.h"
-bool pnp(std::vector<cv::Point2f> &imagePoints,cv::Mat &rvec,cv::Mat &tvec,cv::Mat &image,cv::Point special){
+void pnp(std::vector<cv::Point2f> &imagePoints,cv::Mat &rvec,cv::Mat &tvec,cv::Mat &image,cv::Point special){
     // 3D点的坐标（在世界坐标系中）
     std::vector<cv::Point3f> objectPoints;
     objectPoints.push_back(cv::Point3f(275.0f, 0.0f, 0.0f));
@@ -23,7 +23,6 @@ bool pnp(std::vector<cv::Point2f> &imagePoints,cv::Mat &rvec,cv::Mat &tvec,cv::M
         std::vector<cv::Point3f> points3D={cv::Point3f(0,0,0)};
         std::vector<cv::Point2f> points2D;
         cv::projectPoints(points3D, rvec, tvec, cameraMatrix, distCoeffs, points2D);
-        std::cout<<"++++++++++++"<<euclideanDistance(points2D[0],special)<<std::endl;
         if(euclideanDistance(points2D[0],special)>30){
             success=0;
             rvec=cv::Mat();
@@ -31,8 +30,7 @@ bool pnp(std::vector<cv::Point2f> &imagePoints,cv::Mat &rvec,cv::Mat &tvec,cv::M
         }
     }
     if(success)cv::drawFrameAxes(image, cameraMatrix, distCoeffs, rvec, tvec, 100);
-    //drawMarker(image,special,cv::Scalar(255,0,255));
-    cv::imshow("image111", image);
     
-return success;
+    
+
 }

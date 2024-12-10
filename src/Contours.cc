@@ -11,10 +11,10 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
     cv::Mat mask;
     cv::Mat mask1;
     cv::Mat mask2;
-    //cv::Mat mask3;
+
     cv::inRange(hsv, cv::Scalar(0, 40, 20), cv::Scalar(10, 255, 255), mask1);
     cv::inRange(hsv, cv::Scalar(156, 40, 20), cv::Scalar(180, 255, 255), mask2);
-    //cv::inRange(hsv, cv::Scalar(26, 43, 46), cv::Scalar(34, 255, 255), mask3);
+
     mask=mask1|mask2;
 
     // 形态学操作去除噪点
@@ -23,8 +23,7 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
     morphologyEx(mask, mask, cv::MORPH_OPEN, kerne3);
     morphologyEx(mask, mask, cv::MORPH_CLOSE, kerne4);
   
-    cv::imshow("mask", mask);
-
+    
     cv::Mat point= cv::Mat::zeros(img.size(), CV_8UC3);
     cv::GaussianBlur(mask,mask,cv::Size(3,3),0);
     cv::Canny(mask,point,50,150);
@@ -43,9 +42,7 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
         int time=0;
         while(1){
         time++;
-        if(time>1000){
-            std::cout<<"0000000"<<std::endl;
-            break;}
+        if(time>1000){break;}
         if(num<0){break;}
         if(contours[i].size()==3)break;
         else if(contours[i].size()>3){cv::approxPolyDP(cv::Mat(contours[i]), contours[i], cv::arcLength(cv::Mat(contours[i]), true) * num, true);
@@ -55,9 +52,6 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
         num-=0.01;
         }
     }
-    
     }
-    
-   
     return contours;
 }
