@@ -3,14 +3,25 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
 {
     cv::Mat hsv;
     cv::cvtColor(img, hsv, cv::COLOR_BGR2HSV);	
+
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+    cv::Mat kerne2 = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(7, 7));
+    morphologyEx(hsv, hsv, cv::MORPH_OPEN, kernel);
+    morphologyEx(hsv, hsv, cv::MORPH_CLOSE, kerne2);
     cv::Mat mask;
     cv::Mat mask1;
     cv::Mat mask2;
-    cv::Mat mask3;
-    cv::inRange(hsv, cv::Scalar(0, 43, 46), cv::Scalar(10, 255, 255), mask1);
-    cv::inRange(hsv, cv::Scalar(156, 43, 46), cv::Scalar(180, 255, 255), mask2);
-    cv::inRange(hsv, cv::Scalar(26, 43, 46), cv::Scalar(34, 255, 255), mask3);
-    mask=mask1|mask2|mask3;
+    //cv::Mat mask3;
+    cv::inRange(hsv, cv::Scalar(0, 40, 20), cv::Scalar(10, 255, 255), mask1);
+    cv::inRange(hsv, cv::Scalar(156, 40, 20), cv::Scalar(180, 255, 255), mask2);
+    //cv::inRange(hsv, cv::Scalar(26, 43, 46), cv::Scalar(34, 255, 255), mask3);
+    mask=mask1|mask2;
+
+    // 形态学操作去除噪点
+    cv::Mat kerne3 = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+    cv::Mat kerne4 = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
+    morphologyEx(mask, mask, cv::MORPH_OPEN, kerne3);
+    morphologyEx(mask, mask, cv::MORPH_CLOSE, kerne4);
   
     cv::imshow("mask", mask);
 
@@ -21,13 +32,18 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
 
     std::vector<std::vector<cv::Point>> contours;
     cv::findContours(point, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-        
+    for(int i=0;i<contours.size();i++){
+    if(contourArea(contours[i])<40.0){
+        contours.erase(contours.begin()+i);
+        i--;
+    }    
+    }
     for(int i=0;i<contours.size();i++){
         float num=0.05;
         int time=0;
         while(1){
         time++;
-        if(time>100){
+        if(time>1000){
             std::cout<<"0000000"<<std::endl;
             break;}
         if(num<0){break;}
@@ -42,18 +58,6 @@ std::vector<std::vector<cv::Point>> getContours(cv::Mat &img)
     
     }
     
-    double minArea = 0.0;
-
-    // 过滤小面积轮廓
-    std::vector<std::vector<cv::Point>> filteredContours;
-    for (size_t i = 0; i < contours.size(); i++) {
-        double area = cv::contourArea(contours[i]);
-        if (area >= minArea) {
-            filteredContours.push_back(contours[i]);
-        }
-    }
-    
-
    
     return contours;
 }

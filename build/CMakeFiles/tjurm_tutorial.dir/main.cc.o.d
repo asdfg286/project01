@@ -360,4 +360,7 @@ CMakeFiles/tjurm_tutorial.dir/main.cc.o: \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video/tracking.hpp \
- /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp
+ /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp \
+ /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
+ /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h

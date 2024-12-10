@@ -360,4 +360,5 @@ CMakeFiles/tjurm_tutorial.dir/src/pnp.cc.o: \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video.hpp \
  /usr/local/opencv4.5.4/include/opencv4/opencv2/video/tracking.hpp \
- /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp
+ /usr/local/opencv4.5.4/include/opencv4/opencv2/video/background_segm.hpp \
+ /mnt/d/0_wsl_workspace/project1/include/point.h

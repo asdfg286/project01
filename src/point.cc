@@ -1,4 +1,31 @@
 #include"point.h"
+int isrt(cv::Point &point,std::vector<cv::Point> contour){
+    std::cout<<contourArea(contour)<<"=============0000000000====++"<<std::endl;
+    if(contourArea(contour)<=120){return 0;}
+    for(int i=0;i<contour.size();i++){
+        if(point==contour[i]){
+            //判断直角
+            float angle=std::abs(angleBetweenPoints(contour[(i+1)%contour.size()],contour[(i+2)%contour.size()],point));
+            std::cout<<angle<<"=================++"<<std::endl;
+            if(angle>1.3&&angle<2||angle>4.2&&angle<5){
+                std::cout<<"=======-------------==========++"<<std::endl;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+std::vector<cv::Point> findcontour(cv::Point point,std::vector<std::vector<cv::Point>> contours){
+    for(int i=0;i<contours.size();i++){
+        for(int j=0;j<contours[i].size();j++){
+            if(contours[i][j]==point){
+               return contours[i];
+            }
+        }
+    }
+    return {};
+}
 
 
 // 计算点相对于第一个点的角度
@@ -17,15 +44,24 @@ float angleBetweenPoints(cv::Point p1, cv::Point p2, cv::Point firstPoint) {
 // 按顺时针方向排列点
 
 std::vector<cv::Point> sortPointsClockwise(std::vector<cv::Point>& points) {
-    cv::Point special=points[3];
     
+    int numm=0;
     //中心
     cv::Point center(0,0);
     for(int i=0;i<4;i++){
         center.x+=points[i].x/4;
         center.y+=points[i].y/4;
     }
-
+    if(points[3].x>center.x&&points[3].y<center.y){numm=1;}
+    if(!numm){
+    for(int i=0;i<points.size()-1;i++){
+        if(points[i].x>center.x&&points[i].y<center.y){
+            swap(points[i],points[3]);
+            break;
+        }
+    }
+    }
+    cv::Point special=points[3];
     cv::Point basePoint = center;
     std::vector<cv::Point> sortedPoints = points;
     std::sort(sortedPoints.begin(), sortedPoints.end(), [basePoint](const cv::Point& p1, const cv::Point& p2) {
@@ -271,7 +307,7 @@ std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
     
     
     std::vector<cv::Point> vertex;
-    if(contour.size()==2){vertex.push_back(contour[0]);vertex.push_back(contour[1]);}
+    if(contour.size()==2&&cv::arcLength(contour,1)<50){vertex.push_back(contour[0]);vertex.push_back(contour[1]);}
     
     if(contour.size()==3){
         
@@ -286,6 +322,7 @@ std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
                 
             }
         }
+        
         if(contourArea(contour)>100&&vertex.size()==3){
             vertex.clear();
             float arctan[3];
@@ -300,6 +337,21 @@ std::vector<cv::Point> vertex(std::vector<cv::Point> contour,cv::Mat& img0){
 
         }
     }
+        if(vertex.size()==0&&contourArea(contour)>100){
+            
+            vertex.clear();
+            float arctan[3];
+            arctan[0]=abs(angleBetweenPoints(contour[0],contour[1],contour[2]));
+            arctan[1]=abs(angleBetweenPoints(contour[1],contour[2],contour[0]));
+            arctan[2]=abs(angleBetweenPoints(contour[2],contour[0],contour[1]));
+            std::sort(arctan,arctan+3,[](float a, float b){return a>b;});
+            for(int i=0;i<3;i++){
+                if(abs(angleBetweenPoints(contour[(i+2)%3],contour[(i+1)%3],contour[i]))==arctan[0]){
+                    vertex.push_back(contour[i]);
+            }
+
+        }
+        }
     }
     return vertex;  
 }
@@ -349,6 +401,16 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
     pointss=distinguish(contours,img0);
     pointfor=processNearPoints(pointss[1], 20,contours);
     pointthr=pointss[0];
+    //===========================
+    cv::Mat test=point.clone();
+    for(int i=0;i<pointss.size();i++){
+        for(int j=0;j<pointss[i].size();j++){
+            cv::drawMarker(test,pointss[i][j],cv::Scalar(255,255,0),cv::MARKER_CROSS, 5, 2);
+        }
+    
+    }
+    imshow("result3", test);
+    //===========================
     
     
     for(int i=0;i<pointthr.size();i++){
@@ -375,9 +437,26 @@ std::vector<std::vector<cv::Point>> getPoint(cv::Mat& img,std::vector<std::vecto
             }
         }
     }
+for(int i=0;i<result[1].size();i++){
+    if(result[1][i].y>img.rows||result[1][i].y<0||result[1][i].x>img.cols||result[1][i].x<0){
+        result[1].erase(result[1].begin()+i);
+        i--;
+    }
+}
 
+if(result[1].size()>4){
+    for(int i=0;i<result[1].size();i++){
+    int num=isrt(result[1][i],findcontour(result[1][i],contours));
+    if(num==0){
+        result[1].erase(result[1].begin()+i);
+        i--;
+    }
+    }
+}
+std::cout<<"pointthr size:"<<result[1].size()<<std::endl;
 if(result[1].size()==4){
     result[1] = sortPointsClockwise(result[1]);
+    std::cout<<"qwertyuiop"<<std::endl;
 }
 
 else{std::cout<<"error"<<std::endl;}
